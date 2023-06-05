@@ -58,9 +58,12 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, 
 	ShowWindow(hWnd, nCmdShow);
 
 	//Direct3D初期化
-
-	Direct3D::Initialize(winW, winH, hWnd);
-
+	HRESULT hr;
+	hr = Direct3D::Initialize(winW, winH, hWnd);
+	if (FAILED(hr))
+	{
+		PostQuitMessage(0); //エラー起きたら強制終了
+	}
 	pQuad = new Quad;
 	pQuad->Initialize();
 
