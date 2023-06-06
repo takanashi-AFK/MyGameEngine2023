@@ -114,7 +114,7 @@ void Quad::Draw(XMMATRIX& worldMatrix)
 
 void Quad::Release()
 {
-	pConstantBuffer_->Release();
-	pIndexBuffer_->Release();
-	pVertexBuffer_->Release();
+	SAFE_RELEASE(pConstantBuffer_);
+	SAFE_RELEASE(pIndexBuffer_);
+	SAFE_RELEASE(pVertexBuffer_);
 }

@@ -147,9 +147,10 @@ HRESULT Direct3D::InitShader()
 		//エラー処理
 		MessageBox(NULL, "頂点インプットレイアウトの作成に失敗しました", "エラー", MB_OK);
 		//解放処理
+		SAFE_RELEASE(pCompileVS);
 		return hr;
 	}
-	pCompileVS->Release();
+	SAFE_RELEASE(pCompileVS);
 
 	// ピクセルシェーダの作成（コンパイル）
 	ID3DBlob* pCompilePS = nullptr;
@@ -161,10 +162,11 @@ HRESULT Direct3D::InitShader()
 	{
 		//エラー処理
 		MessageBox(NULL, "ピクセルシェーダの作成に失敗しました", "エラー", MB_OK);
+		SAFE_RELEASE(pCompilePS);
 		return hr;
 	}
 	
-	pCompilePS->Release();
+	SAFE_RELEASE(pCompilePS);
 
 	//ラスタライザ作成
 	D3D11_RASTERIZER_DESC rdc = {};
@@ -214,13 +216,13 @@ void Direct3D::EndDraw()
 void Direct3D::Release()
 {
 	//解放処理
-	pRasterizerState->Release();
-	pVertexLayout->Release();
-	pPixelShader->Release();
-	pVertexShader->Release();
+	SAFE_RELEASE(pRasterizerState);
+	SAFE_RELEASE(pVertexLayout);
+	SAFE_RELEASE(pPixelShader);
+	SAFE_RELEASE(pVertexShader);
 
-	pRenderTargetView->Release();
-	pSwapChain->Release();
-	pContext->Release();
-	pDevice->Release();
+	SAFE_RELEASE(pRenderTargetView);
+	SAFE_RELEASE(pSwapChain);
+	SAFE_RELEASE(pContext);
+	SAFE_RELEASE(pDevice);
 }
