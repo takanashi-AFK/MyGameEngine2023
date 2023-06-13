@@ -10,12 +10,15 @@ using namespace DirectX;
 struct CONSTANT_BUFFER
 {
 	XMMATRIX	matWVP;
+	XMMATRIX	matW;
 };
 
 struct VERTEX
 {
 	XMVECTOR postion;
 	XMVECTOR uv;
+	XMVECTOR normal;
+
 };
 
 class Quad
