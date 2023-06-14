@@ -3,6 +3,8 @@
 #include "Direct3D.h"
 #include "Quad.h"
 #include "Camera.h"
+#include "Dice.h"
+
 
 //定数宣言
 const char* WIN_CLASS_NAME = "SampleGame";  //ウィンドウクラス名
@@ -13,7 +15,9 @@ const int WINDOW_HEIGHT = 600; //ウィンドウの高さ
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 
-Quad* pQuad;
+//Quad* pQuad;
+Dice* pDice;
+
 
 //エントリーポイント
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, int nCmdShow)
@@ -70,9 +74,10 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, 
 
 
 
-	pQuad = new Quad;
-	pQuad->Initialize();
-
+	//pQuad = new Quad;
+	//pQuad->Initialize();
+	pDice = new Dice;
+	pDice->Initialize();
 
 	//メッセージループ（何か起きるのを待つ）
 	MSG msg;
@@ -91,11 +96,8 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, 
 		{
 			Camera::Update();
 
-
 			//ゲームの処理
 			Direct3D::BeginDraw();
-
-
 
 			//描画処理
 			static float a = 0;
@@ -104,13 +106,16 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, 
 			//XMMATRIX matT = XMMatrixTranslation(4,0,0);
 			//XMMATRIX matS = XMMatrixScaling(1, 3, 1);
 			//XMMATRIX mat = matT * matR;
-			pQuad->Draw(mat);
-			
+			//pQuad->Draw(mat);
+			pDice->Draw(mat);
+
+
 			Direct3D::EndDraw();
 
 		}
 	}
-	SAFE_DELETE(pQuad);
+	//SAFE_DELETE(pQuad);
+	SAFE_DELETE(pDice);
 	Direct3D::Release();
 
 	return 0;
