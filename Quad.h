@@ -24,6 +24,7 @@ struct VERTEX
 
 class Quad
 {
+
 protected:
 	int vertexNum_;
 	std::vector<VERTEX> vertices_;
