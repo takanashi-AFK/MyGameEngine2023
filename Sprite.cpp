@@ -55,6 +55,8 @@ HRESULT Sprite::Initialize()
 //描画
 void Sprite::Draw(XMMATRIX& worldMatrix)
 {
+	Direct3D::SetShader(SHADER_2D);
+
 	//コンスタントバッファに情報を渡す
 	PassDataToCB(worldMatrix);
 
@@ -81,13 +83,20 @@ void Sprite::Release()
 
 
 
+
+
+
+
+
+
+
 ///////////////ここからはprivate関数///////////////
 
 //頂点情報の準備
 void Sprite::InitVertexData()
 {
 	// 頂点情報
-	vertices_ = 
+	vertices_ =
 	{
 		{ XMVectorSet(-1.0f,  1.0f, 0.0f, 0.0f), XMVectorSet(0.0f, 0.0f, 0.0f, 0.0f) },// 四角形の頂点（左上）
 		{ XMVectorSet(1.0f,  1.0f, 0.0f, 0.0f),  XMVectorSet(1.0f, 0.0f, 0.0f, 0.0f) },	// 四角形の頂点（右上）

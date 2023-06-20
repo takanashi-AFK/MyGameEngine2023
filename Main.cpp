@@ -3,7 +3,7 @@
 #include "Direct3D.h"
 //#include "Quad.h"
 #include "Camera.h"
-//#include "Dice.h"
+#include "Dice.h"
 #include "Sprite.h"
 
 
@@ -18,7 +18,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 //Quad* pQuad;
 //Dice* pDice;
-Sprite* pSprite;
+
 
 //エントリーポイント
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, int nCmdShow)
@@ -77,9 +77,10 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, 
 
 	//pQuad = new Quad;
 	//pQuad->Initialize();
-	//pDice = new Dice;
-	//pDice->Initialize();
-	pSprite = new Sprite;
+
+	Dice* pDice = new Dice;
+	hr = pDice->Initialize();
+	Sprite* pSprite = new Sprite;
 	hr = pSprite->Initialize();
 
 	//メッセージループ（何か起きるのを待つ）
@@ -102,19 +103,12 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, 
 			//ゲームの処理
 			Direct3D::BeginDraw();
 
-			//描画処理
-			//static float a = 0;
-			//a+=0.1;
-			//XMMATRIX matT = XMMatrixTranslation(1,0,0);
-			//XMMATRIX matS = XMMatrixScaling(2, 2, 2);
-			//XMMATRIX mat = matT * matS;
+			static float angle = 0;
+			angle += 0.05;
+			XMMATRIX mat = XMMatrixRotationY(XMConvertToRadians(angle)) * XMMatrixTranslation(0, 3, 0);
+			pDice->Draw(mat);
 
-			//mat = mat * XMMatrixRotationY(XMConvertToRadians(a));
-
-			//pQuad->Draw(mat);
-			//pDice->Draw(mat);
-
-			XMMATRIX mat = XMMatrixScaling(512.0f / 800.0f, 256.0f / 600.0f, 1.0f);
+			mat = XMMatrixScaling(512.0f / 800.0f, 256.0f / 600.0f, 1.0f);
 			pSprite->Draw(mat);
 
 			Direct3D::EndDraw();
@@ -122,7 +116,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, 
 		}
 	}
 	//SAFE_DELETE(pQuad);
-	//SAFE_DELETE(pDice);
+	SAFE_DELETE(pDice);
 	SAFE_DELETE(pSprite);
 
 	Direct3D::Release();

@@ -4,8 +4,10 @@
 #include <vector>
 
 
-using namespace DirectX;
+
 #define SAFE_DELETE_ARRAY(p) if(p != nullptr){ delete[] p; p = nullptr;}
+
+
 
 //四角形ポリゴン（三角形を２枚）を描画するクラス
 class Sprite
