@@ -6,6 +6,7 @@
 #include "Dice.h"
 #include "Sprite.h"
 #include "Transform.h"
+#include "Fbx.h"
 
 
 //定数宣言
@@ -19,6 +20,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 //Quad* pQuad;
 //Dice* pDice;
+Fbx* pFbx;
 
 
 //エントリーポイント
@@ -84,6 +86,9 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, 
 	Sprite* pSprite = new Sprite;
 	hr = pSprite->Initialize();
 
+	pFbx = new Fbx;
+	pFbx->Load("Assets/Oden.fbx");
+
 	//メッセージループ（何か起きるのを待つ）
 	MSG msg;
 	ZeroMemory(&msg, sizeof(msg));
@@ -110,14 +115,16 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, 
 			Transform diceTransform;
 			diceTransform.position_.y = 3.0f;
 			diceTransform.rotate_.y = angle;
-			pDice->Draw(diceTransform);
+			//pDice->Draw(diceTransform);
 
 			////mat = XMMatrixScaling(512.0f / 800.0f, 256.0f / 600.0f, 1.0f);
 			Transform spriteTransform;
 			spriteTransform.scale_.x = 512.0f / 800.0f;
 			spriteTransform.scale_.y = 256.0f / 600.0f;
 			//mat = XMMatrixScaling(512.0f/800.0f, 256.0f/600.0f, 1.0f);
-			pSprite->Draw(spriteTransform);
+			//pSprite->Draw(spriteTransform);
+
+			pFbx->Draw(diceTransform);
 
 			Direct3D::EndDraw();
 
