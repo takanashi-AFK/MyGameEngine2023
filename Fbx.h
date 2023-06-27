@@ -30,6 +30,7 @@ class Fbx
 	struct VERTEX
 	{
 		XMVECTOR position;
+		XMVECTOR uv;
 	};
 
 	int vertexCount_;	//í∏ì_êî
