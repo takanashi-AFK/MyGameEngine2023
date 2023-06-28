@@ -31,8 +31,9 @@ class Fbx
 
 	struct VERTEX
 	{
-		XMVECTOR position;
-		XMVECTOR uv;
+		XMVECTOR position;//位置
+		XMVECTOR uv; //テクスチャ座標
+		XMVECTOR normal; //法線ベクトル
 	};
 
 	int vertexCount_;	//頂点数
