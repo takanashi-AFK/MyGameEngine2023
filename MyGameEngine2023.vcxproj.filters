@@ -27,6 +27,9 @@
     <Filter Include="ソース ファイル\Texture">
       <UniqueIdentifier>{53abde5d-368d-4594-b19b-ff43963bc65a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Fbx">
+      <UniqueIdentifier>{9bbbf1dc-7a00-4c85-94a9-711162c00166}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -54,7 +57,7 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Fbx.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Fbx</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -79,7 +82,9 @@
     <ClInclude Include="Transform.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Fbx.h" />
+    <ClInclude Include="Fbx.h">
+      <Filter>ソース ファイル\Fbx</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Simple3D.hlsl" />

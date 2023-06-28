@@ -113,7 +113,8 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, 
 			//XMMATRIX mat = XMMatrixRotationY(XMConvertToRadians(angle)) * XMMatrixTranslation(0,3,0);
 
 			Transform diceTransform;
-			//diceTransform.position_.y = 3.0f;
+			diceTransform.position_.y = -2.0f;
+			diceTransform.position_.z = 3.0f;
 			diceTransform.rotate_.y = angle;
 			//pDice->Draw(diceTransform);
 
