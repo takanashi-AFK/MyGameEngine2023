@@ -138,7 +138,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, 
 			Direct3D::EndDraw();
 
 
-			if (Input::IsKey(DIK_ESCAPE))
+			if (Input::IsKeyUp(DIK_ESCAPE))
 			{
 				static int cnt = 0;
 				cnt++;
