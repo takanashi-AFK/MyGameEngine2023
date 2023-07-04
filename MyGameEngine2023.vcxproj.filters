@@ -9,86 +9,44 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="ソース ファイル\Camera">
-      <UniqueIdentifier>{1d8ca9de-61fa-4eed-b495-a3a02fdae62b}</UniqueIdentifier>
+    <Filter Include="ヘッダーファイル">
+      <UniqueIdentifier>{f9ac5f7c-86de-4d39-8ba7-5e83968d5bfc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Dice">
-      <UniqueIdentifier>{acd09231-85f6-4783-93df-4d4613f9f4fd}</UniqueIdentifier>
+    <Filter Include="ソース ファイル\Engine">
+      <UniqueIdentifier>{4581bac9-907b-4eea-b077-9d50fe4fb780}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Direct3D">
-      <UniqueIdentifier>{89594922-e202-48ff-aadb-75a6ccffc212}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Quad">
-      <UniqueIdentifier>{69d15171-7b0e-4a46-8318-ab46e2833108}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Sprite">
-      <UniqueIdentifier>{d80ce496-b043-4204-bc25-8145bfb8b252}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Texture">
-      <UniqueIdentifier>{53abde5d-368d-4594-b19b-ff43963bc65a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Fbx">
-      <UniqueIdentifier>{9bbbf1dc-7a00-4c85-94a9-711162c00166}</UniqueIdentifier>
+    <Filter Include="ヘッダーファイル\Engine">
+      <UniqueIdentifier>{781800bf-0886-4a69-a355-7df3c6979e71}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>ソース ファイル\Camera</Filter>
+    <ClCompile Include="Engine\Camera.cpp">
+      <Filter>ソース ファイル\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Dice.cpp">
-      <Filter>ソース ファイル\Dice</Filter>
+    <ClCompile Include="Engine\Direct3D.cpp">
+      <Filter>ソース ファイル\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Direct3D.cpp">
-      <Filter>ソース ファイル\Direct3D</Filter>
+    <ClCompile Include="Engine\Fbx.cpp">
+      <Filter>ソース ファイル\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Quad.cpp">
-      <Filter>ソース ファイル\Quad</Filter>
+    <ClCompile Include="Engine\Input.cpp">
+      <Filter>ソース ファイル\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>ソース ファイル\Sprite</Filter>
+    <ClCompile Include="Engine\Quad.cpp">
+      <Filter>ソース ファイル\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>ソース ファイル\Texture</Filter>
+    <ClCompile Include="Engine\Sprite.cpp">
+      <Filter>ソース ファイル\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Transform.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Engine\Texture.cpp">
+      <Filter>ソース ファイル\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Fbx.cpp">
-      <Filter>ソース ファイル\Fbx</Filter>
+    <ClCompile Include="Engine\Transform.cpp">
+      <Filter>ソース ファイル\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Camera.h">
-      <Filter>ソース ファイル\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="Dice.h">
-      <Filter>ソース ファイル\Dice</Filter>
-    </ClInclude>
-    <ClInclude Include="Direct3D.h">
-      <Filter>ソース ファイル\Direct3D</Filter>
-    </ClInclude>
-    <ClInclude Include="Quad.h">
-      <Filter>ソース ファイル\Quad</Filter>
-    </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>ソース ファイル\Sprite</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>ソース ファイル\Texture</Filter>
-    </ClInclude>
-    <ClInclude Include="Transform.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Fbx.h">
-      <Filter>ソース ファイル\Fbx</Filter>
-    </ClInclude>
-    <ClInclude Include="Input.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Simple3D.hlsl" />
@@ -96,5 +54,31 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Engine\Camera.h">
+      <Filter>ヘッダーファイル\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Direct3D.h">
+      <Filter>ヘッダーファイル\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Fbx.h">
+      <Filter>ヘッダーファイル\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Input.h">
+      <Filter>ヘッダーファイル\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Sprite.h">
+      <Filter>ヘッダーファイル\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Texture.h">
+      <Filter>ヘッダーファイル\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Transform.h">
+      <Filter>ヘッダーファイル\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Quad.h">
+      <Filter>ヘッダーファイル\Engine</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
