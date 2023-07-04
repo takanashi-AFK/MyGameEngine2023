@@ -50,6 +50,12 @@
     <ClCompile Include="Engine\GameObject.cpp">
       <Filter>ソース ファイル\Engine</Filter>
     </ClCompile>
+    <ClCompile Include="PlayScene.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\RootJob.cpp">
+      <Filter>ソース ファイル\Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Simple3D.hlsl" />
@@ -84,6 +90,10 @@
       <Filter>ヘッダーファイル\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Engine\GameObject.h">
+      <Filter>ヘッダーファイル\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayScene.h" />
+    <ClInclude Include="Engine\RootJob.h">
       <Filter>ヘッダーファイル\Engine</Filter>
     </ClInclude>
   </ItemGroup>
