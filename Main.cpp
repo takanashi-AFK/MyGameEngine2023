@@ -7,7 +7,7 @@
 #include "Sprite.h"
 #include "Transform.h"
 #include "Fbx.h"
-
+#include "Input.h"
 
 //定数宣言
 const char* WIN_CLASS_NAME = "SampleGame";  //ウィンドウクラス名
@@ -76,6 +76,9 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, 
 
 	Camera::Initialize();
 
+	//DirectInputの初期化
+	Input::Initialize(hWnd);
+
 
 
 	//pQuad = new Quad;
@@ -107,6 +110,11 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, 
 			Camera::Update();
 
 			//ゲームの処理
+
+			//入力の処理
+			Input::Update();
+
+
 			Direct3D::BeginDraw();
 			static float angle = 0;
 			angle += 0.05;
@@ -129,9 +137,21 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, 
 
 			Direct3D::EndDraw();
 
+
+			if (Input::IsKey(DIK_ESCAPE))
+			{
+				static int cnt = 0;
+				cnt++;
+				if (cnt >= 3)
+				{
+					PostQuitMessage(0);
+				}
+			}
+
 		}
 	}
 	//SAFE_DELETE(pQuad);
+	Input::Release();
 	SAFE_DELETE(pDice);
 	SAFE_DELETE(pSprite);
 

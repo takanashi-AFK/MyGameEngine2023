@@ -23,7 +23,7 @@ namespace Input
 
 	bool IsKey(int keyCode)
 	{
-		if (keyState[œœœ] œ œœœ)
+		if (keyState[keyCode] & 0x80)
 		{
 			return true;
 		}
