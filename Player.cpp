@@ -1,16 +1,14 @@
 #include "Player.h"
 #include "Engine/Fbx.h"
 
-
 Player::Player(GameObject* parent)
-	:GameObject(parent, "Player"),pFbx(nullptr)
+	:GameObject(parent,"Player"), pFbx(nullptr)
 {
-
-
 }
 
 Player::~Player()
 {
+
 }
 
 void Player::Initialize()
@@ -24,7 +22,6 @@ void Player::Initialize()
 
 void Player::Update()
 {
-	transform_.rotate_.y += 0.1;
 }
 
 void Player::Draw()
@@ -34,4 +31,6 @@ void Player::Draw()
 
 void Player::Release()
 {
+	pFbx->Release();
+	delete pFbx;
 }
