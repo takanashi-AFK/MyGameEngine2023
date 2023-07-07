@@ -3,14 +3,16 @@
 
 class Fbx;
 
-class PlayScene :
+class Player :
     public GameObject
 {
- 
+    Fbx* pFbx;
 public:
     //コンストラクタ
-    //引数：parent  親オブジェクト（SceneManager）
-    PlayScene(GameObject* parent);
+    Player(GameObject* parent);
+
+    //デストラクタ
+    ~Player();
 
     //初期化
     void Initialize() override;
