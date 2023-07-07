@@ -3,7 +3,6 @@
 
 
 Player::Player(GameObject* parent)
-	:GameObject(parent, "Player"),pFbx(nullptr)
 {
 
 
@@ -11,6 +10,7 @@ Player::Player(GameObject* parent)
 
 Player::~Player()
 {
+
 }
 
 void Player::Initialize()
@@ -34,4 +34,6 @@ void Player::Draw()
 
 void Player::Release()
 {
+	pFbx->Release();
+	delete pFbx;
 }
