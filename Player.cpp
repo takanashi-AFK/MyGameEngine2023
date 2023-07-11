@@ -22,7 +22,8 @@ void Player::Initialize()
 
 void Player::Update()
 {
-	transform_.rotate_.y += 0.1;
+	transform_.rotate_.y ++;
+
 }
 
 void Player::Draw()
