@@ -62,8 +62,8 @@
     <ClCompile Include="Childoden.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Model.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Engine\Model.cpp">
+      <Filter>ソース ファイル\Engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -107,6 +107,8 @@
     </ClInclude>
     <ClInclude Include="Player.h" />
     <ClInclude Include="Childoden.h" />
-    <ClInclude Include="Model.h" />
+    <ClInclude Include="Engine\Model.h">
+      <Filter>ヘッダーファイル\Engine</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
