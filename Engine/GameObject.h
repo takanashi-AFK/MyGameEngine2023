@@ -14,7 +14,7 @@ protected:
 	list<GameObject *>	childList_;
 	Transform			transform_;
 	GameObject*			pParent_;
-	string				objectName_;
+	string				objectName_; //オブジェクトの名前の文字列
 
 public:
 	GameObject();
@@ -31,7 +31,11 @@ public:
 	void KillMe();
 	void SetPosition(XMFLOAT3 position);
 	void SetPosition(float x, float y, float z);
-
+	GameObject* FindChildObject(string _objName);
+	GameObject* GetRootJob();
+	GameObject* FindObject(string _objName);
+public:
+	//テンプレートの定義
 	template <class T>
 	GameObject* Instantiate(GameObject* parent)
 	{

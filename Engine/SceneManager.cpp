@@ -30,10 +30,10 @@ void SceneManager::Update()
 		(*scene)->ReleaseSub();
 		SAFE_DELETE(*scene);
 		childList_.clear();
-
 		//ロードしたデータを全削除
 		Model::Release();
 		//後片付け終了
+
 		switch (nextSceneID_)
 		{
 		case SCENE_ID_TEST:
@@ -56,6 +56,10 @@ void SceneManager::Release()
 {
 }
 
+/// <summary>
+/// 指定したシーンをnextSceneID_に設定する（＝次のUpdateでシーンが変わる）
+/// </summary>
+/// <param name="_next">次に移行するシーンID(次のフレームで更新）</param>
 void SceneManager::ChangeScene(SCENE_ID _next)
 {
 	nextSceneID_ = _next;
