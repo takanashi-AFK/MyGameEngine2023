@@ -7,6 +7,9 @@
 
 using std::string;
 using std::list;
+
+class SphereCollider;
+
 class GameObject
 {
 	bool isDead_;
@@ -15,6 +18,7 @@ protected:
 	Transform			transform_;
 	GameObject*			pParent_;
 	string				objectName_; //オブジェクトの名前の文字列
+	SphereCollider*		pCollider_;
 
 public:
 	GameObject();
@@ -34,6 +38,10 @@ public:
 	GameObject* FindChildObject(string _objName);
 	GameObject* GetRootJob();
 	GameObject* FindObject(string _objName);
+	void AddCollider(SphereCollider* pCollider);
+	void Collision(GameObject* pTarget);
+	void RoundRobin(GameObject* pTarget);
+
 public:
 	//テンプレートの定義
 	template <class T>

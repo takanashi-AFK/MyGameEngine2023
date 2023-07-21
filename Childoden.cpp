@@ -1,6 +1,7 @@
 #include "Childoden.h"
 #include "Engine/Fbx.h"
 #include "Engine/Model.h"
+#include "Engine/SphereCollider.h"
 
 Childoden::Childoden(GameObject* parent)
 	:GameObject(parent, "ChildOden"),hModel_(-1)
@@ -21,6 +22,8 @@ void Childoden::Initialize()
     transform_.scale_.z = 0.2f;
     //transform_.position_.x = 2.0f;
     //transform_.position_.y = 1.0f;
+    SphereCollider* col = new SphereCollider(1.0);
+    AddCollider(col);
 }
 
 void Childoden::Update()
