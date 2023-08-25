@@ -13,12 +13,6 @@ void TestScene::Initialize()
 
 void TestScene::Update()
 {
-	//GameObject* dbgTest = FindObject("SceneManager");
-	if (Input::IsKey(DIK_SPACE))
-	{
-		SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
-		pSceneManager->ChangeScene(SCENE_ID_PLAY);
-	}
 
 }
 
