@@ -30,6 +30,17 @@ void Stage::Draw()
 {
     Model::SetTransform(hModel_, transform_);
     Model::Draw(hModel_);
+    for (int x = 0; x < 15; x++)
+    {
+        for (int z = 0; z < 15; z++)
+        {
+            Transform trans;
+            trans.position_.x = x;
+            trans.position_.z = z;
+            Model::SetTransform(hModel_, trans);
+            Model::Draw(hModel_);
+        }
+    }
 }
 
 //ŠJ•ú
