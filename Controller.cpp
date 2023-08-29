@@ -8,6 +8,8 @@ Controller::Controller(GameObject* parent)
 {
     transform_.position_.x = 7.0f;
     transform_.position_.z = 7.0f;
+
+    transform_.rotate_.x = 45.0f;
 }
 
 //デストラクタ
@@ -36,14 +38,43 @@ void Controller::Update()
     }
 
     //回転行列
-    XMMATRIX mRotate = XMMatrixRotationY(XMConvertToRadians(transform_.rotate_.y));
+    XMMATRIX mRotateY = XMMatrixRotationY(XMConvertToRadians(transform_.rotate_.y));
+
+
+
+    if (Input::IsKey(DIK_UP))
+    {
+        transform_.rotate_.x += 1.0f;
+        if (transform_.rotate_.x > 89)
+        {
+            transform_.rotate_.x = 89;
+        }
+    }
+
+    if (Input::IsKey(DIK_DOWN))
+    {
+        transform_.rotate_.x -= 1.0f;
+        if (transform_.rotate_.x < 0)
+        {
+            transform_.rotate_.x = 0;
+        }
+
+
+    }
+    //回転行列
+    XMMATRIX mRotateX = XMMatrixRotationX(XMConvertToRadians(transform_.rotate_.x));
+
+
+
+
+
 
     //現在位置をベクトルにしておく
     XMVECTOR vPos = XMLoadFloat3(&transform_.position_);
 
     //前後移動
     XMVECTOR frontMove = XMVectorSet(0, 0, 0.1f, 0);                //奥向きのXMVECTOR構造体を用意し
-    frontMove = XMVector3TransformCoord(frontMove, mRotate);        //移動ベクトル回転
+    frontMove = XMVector3TransformCoord(frontMove, mRotateY);        //移動ベクトル回転
     if (Input::IsKey(DIK_W))
     {
         vPos += frontMove;
@@ -55,7 +86,7 @@ void Controller::Update()
 
     //左右移動
     XMVECTOR rightMove = XMVectorSet(0.1f, 0, 0, 0);                //右向きのXMVECTOR構造体を用意し
-    rightMove = XMVector3TransformCoord(rightMove, mRotate);        //移動ベクトル回転
+    rightMove = XMVector3TransformCoord(rightMove, mRotateY);        //移動ベクトル回転
 
     if (Input::IsKey(DIK_D))
     {
@@ -70,8 +101,8 @@ void Controller::Update()
 
 
     //カメラ
-    XMVECTOR vCam = XMVectorSet(0, 10, -10, 0);     //自撮り棒用意
-    vCam = XMVector3TransformCoord(vCam, mRotate);  //自撮り棒回転
+    XMVECTOR vCam = XMVectorSet(0, 0, -10, 0);     //自撮り棒用意
+    vCam = XMVector3TransformCoord(vCam, mRotateX * mRotateY);  //自撮り棒回転
     Camera::SetPosition(vPos + vCam);           //カメラの位置は自撮り棒の先端（現在地+自撮り棒）
     Camera::SetTarget(transform_.position_);    //カメラの見る位置はこのオブジェクトの位置
 }
