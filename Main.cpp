@@ -76,6 +76,20 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, 
 		PostQuitMessage(0); //エラー起きたら強制終了
 	}
 
+	///////////////////////////
+	Fbx* pFbx = new Fbx;
+	pFbx->Load("Assets/BoxBrick.fbx");
+	RayCastData data;
+	data.start = XMFLOAT4(0, 0, -5, 0);
+	data.dir = XMFLOAT4(1, 0, 1, 0);
+	pFbx->RayCast(data);
+	int a;
+
+	//当たるか無理やりテスト
+
+
+	///////////////////////////
+
 	//カメラの初期化
 	Camera::Initialize();
 
