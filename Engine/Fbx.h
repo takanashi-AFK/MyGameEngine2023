@@ -15,6 +15,15 @@ using std::vector;
 
 class Texture;
 
+struct RayCastData
+{
+	XMFLOAT4 start;
+	XMFLOAT4 dir;
+	bool hit;
+	float dist;
+};
+
+
 class Fbx
 {
 	//マテリアル
@@ -39,6 +48,10 @@ class Fbx
 		XMVECTOR normal; //法線ベクトル
 	};
 
+
+	VERTEX* pVertices_;
+	int** ppIndex_;
+
 	int vertexCount_;	//頂点数
 	int polygonCount_;	//ポリゴン数
 	int materialCount_;	//マテリアルの個数
@@ -48,7 +61,7 @@ class Fbx
 	ID3D11Buffer* pConstantBuffer_;
 	MATERIAL* pMaterialList_;
 	vector <int> indexCount_;
-	
+
 	void InitVertex(fbxsdk::FbxMesh* mesh);
 	void InitIndex(fbxsdk::FbxMesh* mesh);
 	void IntConstantBuffer();
@@ -59,4 +72,6 @@ public:
 	HRESULT Load(std::string fileName);
 	void    Draw(Transform& transform);
 	void    Release();
+
+	void RayCast(RayCastData& rayData);
 };
