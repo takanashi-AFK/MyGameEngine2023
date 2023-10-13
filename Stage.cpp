@@ -18,7 +18,7 @@ void Stage::SetBlockHeight(int _x, int _z, int _height)
 
 //コンストラクタ
 Stage::Stage(GameObject* parent)
-	:GameObject(parent, "Stage")
+	:GameObject(parent, "Stage"), mode_(0), select_(0)
 {
 	for (int i = 0; i < MODEL_NUM; i++) {
 		hModel_[i] = -1;
@@ -99,6 +99,9 @@ void Stage::Update()
 	//④　③にinvVP、invPrj、invViewをかける
 	vMouseBack = XMVector3TransformCoord(vMouseBack, invVP * invProj * invView);
 
+	int bufX = -1, bufZ;
+	float minDistance = 9999999;
+
 	for (int x = 0; x < 15; x++)
 	{
 		for (int z = 0; z < 15; z++)
@@ -120,12 +123,33 @@ void Stage::Update()
 				//⑥　レイが当たったらブレークポイントで止める
 				if (data.hit)
 				{
-					table_[x][z].height++;
-					break;
+					if (minDistance > data.dist)
+					{
+						minDistance = data.dist;
+						bufX = x;
+						bufZ = z;
+					}
 				}
 
 			}
-
+		}
+	}
+	if (bufX >= 0)
+	{
+		switch (mode_)
+		{
+		case 0:
+			table_[bufX][bufZ].height++;
+			break;
+		case 1:
+			if (table_[bufX][bufZ].height > 0)
+			{
+				table_[bufX][bufZ].height--;
+			}
+			break;
+		case 2:
+			table_[bufX][bufZ].type = select_;
+			break;
 		}
 	}
 }
@@ -198,4 +222,3 @@ BOOL Stage::DialogProc(HWND hDlg, UINT msg, WPARAM wp, LPARAM lp)
 	}
 	return FALSE;
 }
-
