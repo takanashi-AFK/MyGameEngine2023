@@ -10,7 +10,6 @@
 #include "resource.h"
 #include "Stage.h"
 
-
 #pragma comment(lib, "winmm.lib")
 
 //定数宣言
@@ -40,7 +39,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, 
 	wc.hIcon = LoadIcon(NULL, IDI_APPLICATION); //アイコン
 	wc.hIconSm = LoadIcon(NULL, IDI_WINLOGO);   //小さいアイコン
 	wc.hCursor = LoadCursor(NULL, IDC_ARROW);   //マウスカーソル
-	wc.lpszMenuName = NULL;                     //メニュー（なし）
+	wc.lpszMenuName = MAKEINTRESOURCE(IDR_MENU1);                     //メニュー（なし）
 	wc.cbClsExtra = 0;
 	wc.cbWndExtra = 0;
 	wc.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH); //背景（白）
@@ -48,7 +47,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, 
 
 	//ウィンドウサイズの計算
 	RECT winRect = { 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT };
-	AdjustWindowRect(&winRect, WS_OVERLAPPEDWINDOW, FALSE);
+	AdjustWindowRect(&winRect, WS_OVERLAPPEDWINDOW, TRUE);
 	int winW = winRect.right - winRect.left;     //ウィンドウ幅
 	int winH = winRect.bottom - winRect.top;     //ウィンドウ高さ
 
@@ -178,6 +177,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, 
 //ウィンドウプロシージャ（何かあった時によばれる関数）
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
+	int a = 0;
 	switch (msg)
 	{
 	case WM_MOUSEMOVE:
@@ -186,9 +186,24 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	case WM_DESTROY:
 		PostQuitMessage(0);  //プログラム終了
 		return 0;
+	case WM_COMMAND:
+		switch (LOWORD(wParam))
+		{
+		case ID_MENU_NEW:
+			a++;
+			break;
+		case ID_MENU_OPEN:
+			a++;
+			break;
+		case ID_MENU_SAVE:
+			((Stage*)pRootJob->FindObject("Stage"))->Save();
+			return 0;
+		}
 	}
+
 	return DefWindowProc(hWnd, msg, wParam, lParam);
 }
+
 
 BOOL CALLBACK DialogProc(HWND hDlg, UINT msg, WPARAM wp, LPARAM lp)
 {

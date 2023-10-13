@@ -222,3 +222,30 @@ BOOL Stage::DialogProc(HWND hDlg, UINT msg, WPARAM wp, LPARAM lp)
 	}
 	return FALSE;
 }
+
+void Stage::Save()
+{
+	HANDLE hFile;
+	hFile = CreateFile(
+		"test.txt",    //ファイル名
+		GENERIC_WRITE,  //アクセスモード
+		0,
+		NULL,
+		CREATE_ALWAYS,     //作成方法
+		FILE_ATTRIBUTE_NORMAL,
+		NULL
+	);
+
+	std::string data = "";
+	//data.length()
+	DWORD bytes = 0;
+	WriteFile(
+		hFile,              //ファイルハンドル
+		"ABCDEF",          //保存したい文字列
+		12,                  //保存する文字数
+		&bytes,             //保存したサイズ
+		NULL
+	);
+	CloseHandle(hFile);
+
+}
