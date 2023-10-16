@@ -258,41 +258,29 @@ void Stage::Save()
 
 void Stage::Load()
 {
-	std::fstream reading_file;
-	std::string filename = "無題.map";
-	reading_file.open(filename, std::ios::in);
-	reading
-	std::string reading_line_buffer;
+	char fileName1[MAX_PATH] = "無題.map";
+	std::string buffer;
+	OPENFILENAME inputString;
+	std::stringstream oss;
+	ZeroMemory(&inputString, sizeof(inputString));
+	inputString.lStructSize = sizeof(OPENFILENAME);
+	inputString.lpstrFilter = TEXT("マップデータ(*.map)\0*.map\0");
+	inputString.lpstrFile = fileName1;
+	inputString.nMaxFile = MAX_PATH;
+	inputString.Flags = OFN_FILEMUSTEXIST;
+	inputString.lpstrDefExt = TEXT("map");
 
-	int tmpHeight = 0;
-	BLOCKTYPE tmpType = DEFAULT;
-
-	for (int i = 0; i > sizeof(reading_line_buffer); i++)
-	{
-		if (reading_line_buffer[i] != '|')
-		{
-			tmpHeight = reading_line_buffer[i];
-
-		}
-
-		if (reading_line_buffer[i] != ',')
-		{
-			tmpType = DEFAULT;
-
-		}
-
-		for (int x = 0; x < XSIZE; x++)
-		{
-			for (int z = 0; z < ZSIZE; z++)
+	if (GetOpenFileName(&inputString)) {
+		std::string reading_line_buffer;
+		std::fstream inputFile(fileName1, std::ios::in);
+		while (std::getline(inputFile, reading_line_buffer)) {
+			static int i = 0;
+			if (reading_line_buffer[i] != '|')
 			{
-				SetBlockHeight(x, z, tmpHeight);
-				SetBlockType(x, z, tmpType);
+				
 			}
-		}
 
+			inputFile.close();
 	}
-
-	
-
 }
 
