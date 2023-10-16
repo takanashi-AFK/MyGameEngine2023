@@ -17,7 +17,7 @@ class Stage : public GameObject
 {
     int hModel_[MODEL_NUM];    //ÉÇÉfÉãî‘çÜ
     //int table_[XSIZE][ZSIZE];
-    struct
+    struct BlockData
     {
         int type;
         int height;
@@ -48,6 +48,9 @@ public:
     //äJï˙
     void Release() override;
     BOOL DialogProc(HWND hDlg, UINT msg, WPARAM wp, LPARAM lp);
-    void Save();
-    void Load();
+    void SaveTXT();
+    void LoadTXT();
+
+    void SaveBIN();
+    void LoadBIN();
 };

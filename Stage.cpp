@@ -225,7 +225,7 @@ BOOL Stage::DialogProc(HWND hDlg, UINT msg, WPARAM wp, LPARAM lp)
 	return FALSE;
 }
 
-void Stage::Save()
+void Stage::SaveTXT()
 {
 	char fileName1[MAX_PATH] = "無題.map";
 	std::string buffer;
@@ -256,7 +256,7 @@ void Stage::Save()
 	outputFile.close();
 }
 
-void Stage::Load()
+void Stage::LoadTXT()
 {
 	char fileName1[MAX_PATH] = "無題.map";
 	std::string buffer;
@@ -273,14 +273,66 @@ void Stage::Load()
 	if (GetOpenFileName(&inputString)) {
 		std::string reading_line_buffer;
 		std::fstream inputFile(fileName1, std::ios::in);
-		while (std::getline(inputFile, reading_line_buffer)) {
-			static int i = 0;
-			if (reading_line_buffer[i] != '|')
-			{
-				
-			}
-
+		
 			inputFile.close();
+	}
+}
+
+void Stage::SaveBIN()
+{
+	char fileName[MAX_PATH] = "無題.map";//ファイル名指定
+
+	OPENFILENAME ofn; {//構造体の初期化	
+		ZeroMemory(&ofn, sizeof(ofn));//ofnの初期化
+		ofn.lStructSize = sizeof(OPENFILENAME);
+		ofn.lpstrFilter = TEXT("マップデータ(*.map)\0*.map\0");//拡張子
+		ofn.lpstrFile = fileName;
+		ofn.nMaxFile = MAX_PATH;
+		ofn.Flags = OFN_OVERWRITEPROMPT;//ファイル操作形式 今回は上書き
+		ofn.lpstrDefExt = TEXT("map");
+	}
+
+	//ファイルに保存
+	if (GetSaveFileName(&ofn)) {
+		std::fstream outputFile(fileName, std::ios::binary | std::ios::out);//fileNameに対してバイナリ形式で出力
+
+		for (int x = 0; x < XSIZE; x++) {
+			for (int z = 0; z < ZSIZE; z++) {//全部のデータを精査して
+				outputFile.write((char*)&table_[x][z], sizeof(BlockData));//そこにほぞん
+				//tableのデータを文字列に入れるためchar*に
+				//キャストして入れる
+				//write(何のデータを入れるか,そのデータのサイズ)
+			}
+		}
+		outputFile.close();
+	}
+}
+
+void Stage::LoadBIN()
+{
+	char fileName[MAX_PATH] = "無題.map";
+
+	//OPENFILENAME構造体を初期化
+	OPENFILENAME ofn; {
+		ZeroMemory(&ofn, sizeof(ofn));
+		ofn.lStructSize = sizeof(OPENFILENAME);
+		ofn.lpstrFilter = TEXT("マップデータ(*.map)\0*.map\0");
+		ofn.lpstrFile = fileName;
+		ofn.nMaxFile = MAX_PATH;
+		ofn.Flags = OFN_FILEMUSTEXIST;
+		ofn.lpstrDefExt = TEXT("map");
+	}
+
+	//ファイルを開く
+	if (GetOpenFileName(&ofn)) {
+		std::fstream inputFile(fileName, std::ios::binary | std::ios::in);
+
+		for (int x = 0; x < XSIZE; x++) {
+			for (int z = 0; z < ZSIZE; z++) {
+				inputFile.read((char*)&table_[x][z], sizeof(BlockData));
+			}
+		}
+		inputFile.close();
 	}
 }
 
