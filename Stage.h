@@ -28,7 +28,7 @@ class Stage : public GameObject
 
 
 public:
-    void SetBlock(int _x, int _z, BLOCKTYPE _type);
+    void SetBlockType(int _x, int _z, BLOCKTYPE _type);
     void SetBlockHeight(int _x, int _z, int _height);
     //コンストラクタ
     Stage(GameObject* parent);
@@ -49,4 +49,5 @@ public:
     void Release() override;
     BOOL DialogProc(HWND hDlg, UINT msg, WPARAM wp, LPARAM lp);
     void Save();
+    void Load();
 };

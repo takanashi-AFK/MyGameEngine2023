@@ -8,7 +8,7 @@
 #include<sstream>
 
 
-void Stage::SetBlock(int _x, int _z, BLOCKTYPE _type)
+void Stage::SetBlockType(int _x, int _z, BLOCKTYPE _type)
 {
 	table_[_x][_z].type = _type;
 }
@@ -27,7 +27,7 @@ Stage::Stage(GameObject* parent)
 	}
 	for (int z = 0; z < ZSIZE; z++) {
 		for (int x = 0; x < XSIZE; x++) {
-			SetBlock(x, z, DEFAULT);
+			SetBlockType(x, z, DEFAULT);
 		}
 	}
 }
@@ -56,7 +56,7 @@ void Stage::Initialize()
 	//tableにブロックのタイプをセットしてやろう！
 	for (int z = 0; z < ZSIZE; z++) {
 		for (int x = 0; x < XSIZE; x++) {
-			SetBlock(x, z, (BLOCKTYPE)(0));
+			SetBlockType(x, z, (BLOCKTYPE)(0));
 			SetBlockHeight(x, z, 0);
 		}
 	}
@@ -244,19 +244,55 @@ void Stage::Save()
 	if (selFile == FALSE)return;
 	std::ofstream outputFile(fileName1);
 
-
-
 	for (int x = 0; x < XSIZE; x++)
 	{
 		for (int z = 0; z < ZSIZE; z++)
 		{
-			oss << table_[x][z].height << ',' << table_[x][z].type << ',';
+			oss << table_[x][z].height << ',' << table_[x][z].type<<'|';
 		}
 	}
 
 	outputFile << oss.str();
 	outputFile.close();
+}
 
+void Stage::Load()
+{
+	std::fstream reading_file;
+	std::string filename = "無題.map";
+	reading_file.open(filename, std::ios::in);
+	reading
+	std::string reading_line_buffer;
+
+	int tmpHeight = 0;
+	BLOCKTYPE tmpType = DEFAULT;
+
+	for (int i = 0; i > sizeof(reading_line_buffer); i++)
+	{
+		if (reading_line_buffer[i] != '|')
+		{
+			tmpHeight = reading_line_buffer[i];
+
+		}
+
+		if (reading_line_buffer[i] != ',')
+		{
+			tmpType = DEFAULT;
+
+		}
+
+		for (int x = 0; x < XSIZE; x++)
+		{
+			for (int z = 0; z < ZSIZE; z++)
+			{
+				SetBlockHeight(x, z, tmpHeight);
+				SetBlockType(x, z, tmpType);
+			}
+		}
+
+	}
+
+	
 
 }
 
