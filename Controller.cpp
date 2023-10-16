@@ -65,10 +65,6 @@ void Controller::Update()
     XMMATRIX mRotateX = XMMatrixRotationX(XMConvertToRadians(transform_.rotate_.x));
 
 
-
-
-
-
     //現在位置をベクトルにしておく
     XMVECTOR vPos = XMLoadFloat3(&transform_.position_);
 

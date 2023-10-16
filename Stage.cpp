@@ -250,7 +250,7 @@ void Stage::Save()
 	{
 		for (int z = 0; z < ZSIZE; z++)
 		{
-			oss << table_[x][z].height;
+			oss << table_[x][z].height << ',' << table_[x][z].type << ',';
 		}
 	}
 
