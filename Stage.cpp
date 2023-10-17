@@ -66,9 +66,7 @@ void Stage::Initialize()
 //更新
 void Stage::Update()
 {
-	if (!Input::IsMouseButtonDown(0)) {
-		return;
-	}
+	
 	float w = (float)(Direct3D::scrWidth / 2.0f);
 	float h = (float)(Direct3D::scrHeight / 2.0f);
 	//Offsetx,y は0
@@ -122,14 +120,17 @@ void Stage::Update()
 
 				Model::RayCast(hModel_[0], data);
 
-				//⑥　レイが当たったらブレークポイントで止める
 				if (data.hit)
 				{
+					
 					if (minDistance > data.dist)
 					{
+						if (Input::IsMouseButtonDown(0))
+						{
 						minDistance = data.dist;
 						bufX = x;
 						bufZ = z;
+						}
 					}
 				}
 
@@ -152,6 +153,15 @@ void Stage::Update()
 		case 2:
 			table_[bufX][bufZ].type = select_;
 			break;
+		case 3:
+			for (int i = bufX-1; i < bufX + 2; i++)
+			{
+				for (int j = bufZ-1; j < bufZ + 2; j++)
+				{
+					table_[i][j].type = select_;
+				}
+			}
+
 		}
 	}
 }
@@ -214,7 +224,9 @@ BOOL Stage::DialogProc(HWND hDlg, UINT msg, WPARAM wp, LPARAM lp)
 		case IDC_RADIO_CHANGE:
 			mode_ = 2;
 			return TRUE;
-
+		case IDC_RADIO_EXCHANGE:
+			mode_ = 3;
+			return TRUE;
 		case IDC_COMBO2:
 			select_ = (int)SendMessage(GetDlgItem(hDlg, IDC_COMBO2), CB_GETCURSEL, 0, 0);
 			return TRUE;
@@ -334,5 +346,9 @@ void Stage::LoadBIN()
 		}
 		inputFile.close();
 	}
+}
+
+void Stage::ExChangeType()
+{
 }
 

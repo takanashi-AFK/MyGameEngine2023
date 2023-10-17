@@ -48,9 +48,25 @@ public:
     //開放
     void Release() override;
     BOOL DialogProc(HWND hDlg, UINT msg, WPARAM wp, LPARAM lp);
+    
+    /// <summary>
+    /// テキストでのセーブ
+    /// </summary>
     void SaveTXT();
+    /// <summary>
+    /// テキストでのロード
+    /// </summary>
     void LoadTXT();
 
+
+    /// <summary>
+    /// バイナリでのセーブ
+    /// </summary>
     void SaveBIN();
+    /// <summary>
+    /// バイナリでのロード
+    /// </summary>
     void LoadBIN();
+
+    void ExChangeType();
 };

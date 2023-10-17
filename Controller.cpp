@@ -54,7 +54,7 @@ void Controller::Update()
     if (Input::IsKey(DIK_DOWN))
     {
         transform_.rotate_.x -= 1.0f;
-        if (transform_.rotate_.x < 0)
+        if (transform_.rotate_.x < 1)
         {
             transform_.rotate_.x = 0;
         }
