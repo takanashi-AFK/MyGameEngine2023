@@ -122,7 +122,6 @@ void Stage::Update()
 
 				if (data.hit)
 				{
-					
 					if (minDistance > data.dist)
 					{
 						if (Input::IsMouseButtonDown(0))
@@ -161,6 +160,7 @@ void Stage::Update()
 					table_[i][j].type = select_;
 				}
 			}
+			break;
 
 		}
 	}
