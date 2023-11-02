@@ -153,15 +153,8 @@ void Stage::Update()
 			table_[bufX][bufZ].type = select_;
 			break;
 		case 3:
-			for (int i = bufX-1; i < bufX + 2; i++)
-			{
-				for (int j = bufZ-1; j < bufZ + 2; j++)
-				{
-					table_[i][j].type = select_;
-				}
-			}
+			ExChangeType(bufX, bufZ);
 			break;
-
 		}
 	}
 }
@@ -224,9 +217,11 @@ BOOL Stage::DialogProc(HWND hDlg, UINT msg, WPARAM wp, LPARAM lp)
 		case IDC_RADIO_CHANGE:
 			mode_ = 2;
 			return TRUE;
+
 		case IDC_RADIO_EXCHANGE:
 			mode_ = 3;
 			return TRUE;
+
 		case IDC_COMBO2:
 			select_ = (int)SendMessage(GetDlgItem(hDlg, IDC_COMBO2), CB_GETCURSEL, 0, 0);
 			return TRUE;
@@ -348,7 +343,14 @@ void Stage::LoadBIN()
 	}
 }
 
-void Stage::ExChangeType()
+void Stage::ExChangeType(int bX,int bZ)
 {
+	for (int i = bX - 1; i < bX + 2; i++)
+	{
+		for (int j = bZ - 1; j < bZ + 2; j++)
+		{
+			table_[i][j].type = select_;
+		}
+	}
 }
 

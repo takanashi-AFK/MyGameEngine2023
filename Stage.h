@@ -68,5 +68,5 @@ public:
     /// </summary>
     void LoadBIN();
 
-    void ExChangeType();
+    void ExChangeType(int bX, int bZ);
 };
